@@ -38,10 +38,42 @@ body{
 
 #igra{
     display: none;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
 #opcije{
     display: none;
     align-items: center;
     justify-content: center;
+}
+
+.granica{
+    height: 90vh;
+    width: 90vw;
+    border: double 5px red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#igrac{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: #000000;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0f9b0f, #000000);
+    background: linear-gradient(to right, #0f9b0f, #000000);
+    position: relative;
+    top: 0px;
+    left: 0px;
+}
+
+#objekt{
+    position: relative;
+    top: 200px;
+    height:20px;
+    width: 60px;
+    background-color: green;
 }
