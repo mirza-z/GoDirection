@@ -24,6 +24,10 @@ body{
     height: 100vh;
 }
 
+#main-menu .main-buttons{
+    top: 300px;
+}
+
 .main-buttons{
     width: 150px;
     height: 50px;
@@ -52,15 +56,14 @@ body{
 .granica{
     height: 90vh;
     width: 90vw;
-    border: double 5px red;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
 #igrac{
-    width: 50px;
-    height: 50px;
+    width: 55px;
+    height: 55px;
     border-radius: 50%;
     background: #000000;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to right, #0f9b0f, #000000);
@@ -74,6 +77,33 @@ body{
     position: relative;
     top: 200px;
     height:20px;
-    width: 60px;
+    width: 55px;
     background-color: green;
 }
+
+#eksplodiraj{
+    display: none;
+    align-items: center;
+    justify-content: center;
+}
+
+#eksplodiraj .main-buttons{
+    top:400px;
+}
+
+.tekstic{
+    position: absolute;
+    top: 300px;
+}
+
+#vrijeme{
+    position: absolute;
+    top: 350px;
+    color:indigo;
+}
+
+.ime{
+    position: absolute;
+    top: 200px;
+}
+

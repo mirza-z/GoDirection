@@ -4,13 +4,15 @@ var opcije = document.getElementById("opcije");
 var eksplozija = document.getElementById("eksplodiraj");
 var igrac = document.getElementById("igrac");
 var objekt = document.getElementById("objekt");
+var vrijeme = document.getElementById("vrijeme");
+var counter = 0;
 
 var score = 0;
 
 var topIgrac = 0;
-var leftIgrac = 25;
-var topObjekt = 200;
-var leftObjekt = -30;
+var leftIgrac = 0;
+var topObjekt = 100;
+var leftObjekt = 0;
     
 igrac.style.top = topIgrac + "px";
 igrac.style.left = leftIgrac + "px";
@@ -20,13 +22,34 @@ objekt.style.left = leftObjekt + "px";
 var xDown = null;                                                        
 var yDown = null;
 
+function stopiraj(){
+    setInterval(()=>{
+        counter++;
+    }, 1000);
+}
+
+function explode(){
+    igra.style.display = "none";
+    vrijeme.innerHTML = counter + " Sekundi";
+    eksplozija.style.display = "flex";
+}
+
+function startNewGame(){
+    score = 0;
+    console.clear();
+    console.log(counter);
+    counter = 0;
+    eksplozija.style.display = "none";
+    mainMenu.style.display = "flex";
+}
+
 function postaviNoviObjekt(direkcija){
     var uslov = getRandomInt(0,2);
     if(direkcija == "dole"){
 
         if(uslov){
-            var  max = topObjekt-80;
-            var min = -350;
+            var  max = topObjekt-120;
+            var min = -300;
             topObjekt = getRandomInt(min, max);
             objekt.style.top = topObjekt + "px";
             objekt.style.height = 20 + "px";
@@ -35,65 +58,73 @@ function postaviNoviObjekt(direkcija){
             var  max;
             var min;
             var a = getRandomInt(0, 2);
+            if(leftIgrac<-100) a=1;
+            else if(leftIgrac>100) a=0;
             if(a){
-                max = 160;
-                min = leftObjekt+26;
+                max = 150;
+                min = leftIgrac+70;
             } else{
-                max = leftObjekt-26;
-                min = -160;
+                max = leftIgrac-70;
+                min = -150;
             }
             leftObjekt = getRandomInt(min, max);
+            topObjekt = topIgrac-55;
             objekt.style.left = leftObjekt + "px";
-            objekt.style.top = topIgrac + "px";
-            objekt.style.height = 60 + "px";
+            objekt.style.top = topObjekt + "px";
+            objekt.style.height = 55 + "px";
             objekt.style.width = 20 + "px";
         }
     }
     
     else if(direkcija == "gore"){
         if(uslov){
-            var  max = 350;
+            var  max = 300;
             var min = topObjekt+80;
             topObjekt = getRandomInt(min, max);
             objekt.style.top = topObjekt + "px";
             objekt.style.height = 20 + "px";
-            objekt.style.width = 60 + "px";
+            objekt.style.width = 55 + "px";
         } else{
             var  max;
             var min;
             var a = getRandomInt(0, 2);
+            if(leftIgrac<-100) a=1;
+            else if(leftIgrac>100) a=0;
             if(a){
-                max = 160;
-                min = leftObjekt+26;
+                max = 150;
+                min = leftIgrac+80;
             } else{
-                max = leftObjekt-26;
-                min = -160;
+                max = leftIgrac-80;
+                min = -150;
             }
             
             leftObjekt = getRandomInt(min, max);
             objekt.style.left = leftObjekt + "px";
-            objekt.style.top = topIgrac + "px";
-            objekt.style.height = 60 + "px";
+            topObjekt = topIgrac-55;
+            objekt.style.top = topObjekt + "px";
+            objekt.style.height = 55 + "px";
             objekt.style.width = 20 + "px";
         }
     } 
     
     else if(direkcija == "lijevo"){
         if(uslov){
-            var  max = 160;
-            var min = leftIgrac+100;
+            var  max = 150;
+            var min = leftIgrac+60;
             leftObjekt = getRandomInt(min, max);
-            objekt.style.left = leftObjekt;
+            objekt.style.left = leftObjekt+ "px";
         } else{
             var  max;
             var min;
             var a = getRandomInt(0, 2);
+            if(topIgrac<=-270) a=1;
+            else if(topIgrac>=270) a=0;
             if(a){
-                max = 350;
-                min = topObjekt+30;
+                max = 300;
+                min = topObjekt+80;
             } else{
-                max = topObjekt+30;
-                min = -350;
+                max = topObjekt-80;
+                min = -300;
             }
             
             topObjekt = getRandomInt(min, max);
@@ -106,27 +137,29 @@ function postaviNoviObjekt(direkcija){
 
     else if(direkcija == "desno"){
         if(uslov){
-            var  min = -160;
-            var max = leftIgrac-100;
+            var  min = -150;
+            var max = leftIgrac-80;
             leftObjekt = getRandomInt(min, max);
-            objekt.style.left = leftObjekt;
+            objekt.style.left = leftObjekt + "px";
         } else{
             var  max;
             var min;
             var a = getRandomInt(0, 2);
+            if(topIgrac<=-270) a=1;
+            else if(topIgrac>=270) a=0;
             if(a){
-                max = 350;
-                min = topObjekt+30;
+                max = 300;
+                min = topObjekt+80;
             } else{
-                max = topObjekt+30;
-                min = -350;
+                max = topObjekt-80;
+                min = -300;
             }
             
             topObjekt = getRandomInt(min, max);
             objekt.style.top = topObjekt + "px";
-            objekt.style.left = leftIgrac-55 + "px";
+            objekt.style.left = leftIgrac + "px";
             objekt.style.height = 20 + "px";
-            objekt.style.width = 60 + "px";
+            objekt.style.width = 55 + "px";
         }
     }
 }
@@ -134,20 +167,22 @@ function postaviNoviObjekt(direkcija){
 function provjera(direkcija){
     if(direkcija=="dole"){
         if(topIgrac>=topObjekt) return false;
-        else if(leftIgrac-55!=leftObjekt) return false;
+        else if(leftIgrac!=leftObjekt) return false;
         else return true;
     }
     else if(direkcija=="gore"){
         if(topIgrac<=topObjekt) return false;
-        else if(leftIgrac-55!=leftObjekt) return false;
+        else if(leftIgrac!=leftObjekt) return false;
         else return true;
     }
     else if(direkcija=="desno"){
-        if(leftIgrac-55>=leftObjekt) return false;
+        if(leftIgrac>=leftObjekt) return false;
+        else if(topIgrac!=topObjekt+55) return false;
         else return true;
     }
     else if(direkcija=='lijevo'){
-        if(leftIgrac+55<=leftObjekt) return false;
+        if(leftIgrac<=leftObjekt) return false;
+        else if(topIgrac!=(topObjekt+55)) return false;
         else return true;
     }
 }
@@ -155,72 +190,76 @@ function provjera(direkcija){
 function svajpanoDole(){
     
     if(provjera("dole")){
-        while(topIgrac+33 != topObjekt){
+        while(topIgrac != topObjekt){
 
             igrac.style.top = topIgrac + "px";
             topIgrac++;
         }
         score++;
-        console.log(score);
+        if(score==20){
+            console.log(counter);
+            explode();
+        }
         postaviNoviObjekt("dole");
     }
-    else console.log("greska");
+    else score--;
     
 } 
 
 function svajpanoGore(){
     
     if(provjera("gore")){
-        while(topIgrac-33 != topObjekt){
+        while(topIgrac != topObjekt){
 
             igrac.style.top = topIgrac + "px";
             topIgrac--;
         }
         score++;
+        if(score==20){
+            console.log(counter);
+            explode();
+        }
         console.log(score);
         postaviNoviObjekt("gore");
     }
-    else console.log("greska");
+    else score--;
     
 } 
 
 function svajpanoLijevo(){
     
     if(provjera("lijevo")){
-        while(leftIgrac-55 != leftObjekt){
+        while(leftIgrac != leftObjekt){
                 igrac.style.left = leftIgrac + "px";
                 leftIgrac--;
         }
         score++;
-        console.log(score);
+        if(score==20){
+            console.log(counter);
+            explode();
+        }
         postaviNoviObjekt("lijevo");
     }
-    else {console.log("greska");
-    console.log(leftObjekt);
-    console.log(leftIgrac);
-    console.log(topObjekt);
-    console.log(topIgrac);}
+    else score--;
 } 
 
 function svajpanoDesno(){
     
     if(provjera("desno")){
-        while(leftIgrac+55 != leftObjekt){
+        while(leftIgrac != leftObjekt){
 
             igrac.style.left = leftIgrac + "px";
             leftIgrac++;
         }
         score++;
+        if(score==20){
+            console.log(counter);
+            explode();
+        }
         console.log(score);
         postaviNoviObjekt("desno");
     }
-    else{
-        console.log("greska");
-        console.log(leftObjekt);
-        console.log(leftIgrac);
-        console.log(topObjekt);
-        console.log(topIgrac);
-    } 
+    else score--;
 } 
 
     
@@ -237,20 +276,18 @@ function options(){
     opcije.style.display = "flex";
 }
 
-function playAudio(url) {
-    new Audio(url).play();
-  }
-
-
 function main(){
     mainMenu.style.display = "flex";
     opcije.style.display = "none";
 }
 
+stopiraj();
+
 function play(){
+    counter = 0;
     mainMenu.style.display = "none";
     igra.style.display = "flex";
-    playAudio('soundtrack.mp3');
+    
     zapocni();
 }
 

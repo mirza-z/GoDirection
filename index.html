@@ -10,17 +10,20 @@
 <body>
     
     <section id="main-menu"> 
+        <h1 class="ime">Go Direction</h1>
         <div class="okvir">
             <button class="main-buttons" onclick="play()">Igraj</button>
             <button class="main-buttons" onclick="options()">Opcije</button>
-            <button class="main-buttons">Eksplodiraj</button>
         </div>
     </section>
 
     <section id="igra"> 
         <div class="granica">
-            <div id="igrac"></div>
+            <div>
+        <div id="igrac"></div>
             <div id="objekt"></div>
+            </div>
+            
         </div>
     </section>
 
@@ -32,7 +35,12 @@
     </section>
 
     <section id="eksplodiraj"> 
-
+        
+        <h1 class="tekstic">Zavrsili ste za: </h1>
+        <h2 id="vrijeme"></h2>
+        <div class="okvir">   
+            <button class="main-buttons" onclick="startNewGame()">Meni</button>
+        </div>
     </section>
    
     <script src="script.js"></script>
